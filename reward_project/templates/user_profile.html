@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h2>Your Profile</h2>
+<p>Username: {{ user.username }}</p>
+<p>Total Points Earned: {{ total_points }}</p>
+
+<h3>Task History</h3>
+<ul>
+    {% for task in tasks %}
+    <li>{{ task.app.name }} - Points Earned: {{ task.points_earned }} - Completed: {{ task.completed }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

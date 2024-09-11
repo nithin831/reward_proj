@@ -1,0 +1,24 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h2>Available Apps</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>App Name</th>
+            <th>Download Link</th>
+            <th>Points</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in apps %}
+        <tr>
+            <td>{{ app.name }}</td>
+            <td><a href="{{ app.download_link }}" class="btn btn-success">Download</a></td>
+            <td>{{ app.points }}</td>
+            <td><a href="{% url 'submit_task' app.id %}" class="btn btn-primary">Submit Task</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

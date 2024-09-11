@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h2>Add New App</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add App</button>
+    
+</form>
+<!-- Back button -->
+<button class="btn btn-secondary mt-3" onclick="window.history.back();">Back</button>
+{% endblock %}

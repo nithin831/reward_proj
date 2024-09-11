@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>App Rewards</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {% if user.is_authenticated %}
+        <a class="navbar-brand" href="{% url 'user_dashboard' %}">App Rewards</a>
+        {% else %}
+        <a class="navbar-brand" href="#">App Rewards</a>
+        {% endif %}
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_profile' %}">Profile</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% if user.is_authenticated %}
+            <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+            </form>
+            {% else %}
+            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'user_login' %}">Login</a>
+            <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'signup' %}">Sign Up</a>
+            <a class="btn btn-outline-dark my-2 my-sm-0" href="{% url 'admin_login' %}">Admin Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

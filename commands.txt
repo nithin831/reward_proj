@@ -1,0 +1,5 @@
+docker build --tag reward_proj:v1 .
+docker run --publish 8000:8000 reward_proj:v1
+docker login -u "*******" -p "**********" docker.io  
+docker tag reward_proj:v1 nithin831/reward_project:v1
+docker push nithin831/reward_project:v1

@@ -1,0 +1,32 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<h3>Available Apps</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>App Name</th>
+            <th>Download Link</th>
+            <th>Points</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in apps %}
+        <tr>
+            <td>{{ app.name }}</td>
+            <td>{{ app.download_link }}</td>
+            <td>{{ app.points }}</td>
+            <td>
+                <a href="{% url 'admin_update_app' app.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'admin_delete_app' app.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'admin_add_app' %}" class="btn btn-primary">Add App</a>
+<a href="{% url 'admin_logout' %}" class="btn btn-danger">Logout</a>
+{% endblock %}
